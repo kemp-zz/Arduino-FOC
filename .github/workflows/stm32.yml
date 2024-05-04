@@ -27,24 +27,25 @@ jobs:
 
         include:
           - arduino-boards-fqbn: STMicroelectronics:stm32:GenF2:pnum=storm32
-            platform-url: https://github.com/kemp-zz/Arduino-FOC/blob/master/src/STorM32-BGC_v1.3.json
+            platform-url: https://github.com/kemp-zz/Arduino-FOC/blob/master/src/STorM32-BGC_v1.31_RC
             sketch-names: storm32.ino
-          
-             
 
       # Do not cancel all jobs / architectures if one job fails
       fail-fast: false
     steps:
     - name: Checkout
       uses: actions/checkout@master
-    - name: Compile all examples
-      uses: ArminJo/arduino-test-compile@master
+    - name: Install required board platform
+      run: |
+        PLATFORM=STMicroelectronics:stm32
+        arduino-cli core update-index --additional-urls https://github.com/kemp-zz/Arduino-FOC/blob/master/src/STorM32-BGC_v1.31_RC.json > /dev/null
+        arduino-cli core install STMicroelectronics:stm32 --additional-urls https://github.com/kemp-zz/Arduino-FOC/blob/master/src/STorM32-BGC_v1.31_RC.json > /dev/null
+    - uses: ArminJo/arduino-test-compile@master
       with:
           arduino-board-fqbn: ${{ matrix.arduino-boards-fqbn }}
-          required-libraries: ${{ matrix.required-libraries }}
-          platform-url: ${{ matrix.platform-url }}
           sketch-names: ${{ matrix.sketch-names }}
           sketches-exclude: ${{ matrix.sketches-exclude }}
           build-properties: ${{ toJson(matrix.build-properties) }}
+
 
             
