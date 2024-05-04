@@ -1,4 +1,5 @@
 name: STM32
+
 on:
   push:
     branches: [ master ]
@@ -14,23 +15,22 @@ jobs:
         with:
           library-manager: update
           project-type: library
-          
+
   build:
-    name: Test compiling 
+    name: Test compiling
     runs-on: ubuntu-latest
-   
+
     strategy:
       matrix:
         arduino-boards-fqbn:
-          - STMicroelectronics:stm32:GenF2:pnum=storm32   
-
+          - STMicroelectronics:stm32:GenF2:pnum=storm32
 
         include:
           - arduino-boards-fqbn: STMicroelectronics:stm32:GenF2:pnum=storm32
             platform-url: https://raw.githubusercontent.com/platformio/platform-ststm32/master/boards/storm32_v1_31_rc.json
-            sketch-names: bluepill_position_control.ino, stm32_i2c_dual_bus_example.ino, stm32_spi_alt_example.ino
-
-            
+            sketch-names: storm32_position_control.ino, stm32_i2c_dual_bus_example.ino, stm32_spi_alt_example.ino
+          
+             
 
       # Do not cancel all jobs / architectures if one job fails
       fail-fast: false
@@ -46,3 +46,5 @@ jobs:
           sketch-names: ${{ matrix.sketch-names }}
           sketches-exclude: ${{ matrix.sketches-exclude }}
           build-properties: ${{ toJson(matrix.build-properties) }}
+
+            
