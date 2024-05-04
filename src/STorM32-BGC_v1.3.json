@@ -1,0 +1,13 @@
+{
+  "name": "STorM32 BGC v1.31 RC",
+  "fqbn": "STMicroelectronics:stm32:STorM32-BGC_v1.31_RC:pnum=STorM32-BGC_v1.31_RC",
+  "platform": "STMicroelectronics:stm32",
+  "board": "STorM32-BGC_v1.31_RC",
+  "build": {
+    "mcu": "stm32f103rct6",
+    "f_cpu": "72000000L"
+  },
+  "upload": {
+    "protocol": "stlink"
+  }
+}
