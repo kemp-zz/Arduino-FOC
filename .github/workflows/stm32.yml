@@ -27,8 +27,8 @@ jobs:
 
         include:
           - arduino-boards-fqbn: STMicroelectronics:stm32:GenF2:pnum=storm32
-            platform-url: https://raw.githubusercontent.com/platformio/platform-ststm32/master/boards/storm32_v1_31_rc.json
-            sketch-names: storm32_position_control.ino, stm32_i2c_dual_bus_example.ino, stm32_spi_alt_example.ino
+            platform-url: https://github.com/kemp-zz/Arduino-FOC/blob/master/src/STorM32-BGC_v1.3.json
+            sketch-names: storm32.ino
           
              
 
