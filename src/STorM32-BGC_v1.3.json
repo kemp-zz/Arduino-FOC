@@ -4,10 +4,38 @@
   "platform": "STMicroelectronics:stm32",
   "board": "STorM32-BGC_v1.31_RC",
   "build": {
+    "core": "stm32",
+    "cpu": "cortex-m3",
+    "extra_flags": "-DSTM32F103xE -DSTM32F1",
     "mcu": "stm32f103rct6",
-    "f_cpu": "72000000L"
+    "f_cpu": "72000000L",
+    "product_line": "STM32F103xE",
+    "variant": "STM32F1xx/F103R(C-D-E)T"
   },
   "upload": {
-    "protocol": "stlink"
-  }
+    "protocol": "stlink",
+    "protocols": [
+      "jlink",
+      "cmsis-dap",
+      "stlink",
+      "blackmagic",
+      "serial",
+      "dfu"
+    ],
+    "maximum_ram_size": 49152,
+    "maximum_size": 262144
+  },
+  "frameworks": [
+    "arduino",
+    "cmsis",
+    "libopencm3",
+    "stm32cube"
+  ],
+  "debug": {
+    "jlink_device": "STM32F103RC",
+    "openocd_target": "stm32f1x",
+    "svd_path": "STM32F103xx.svd"
+  },
+  "url": "http://www.olliw.eu/storm32bgc-wiki/STorM32_Boards#STorM32-BGC_v1.3",
+  "vendor": "STorM32"
 }
